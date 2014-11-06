@@ -2,8 +2,6 @@ package com.waved.streetshout.waved.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import com.waved.streetshout.waved.R;
 

@@ -11,4 +11,10 @@
     <string name="title_activity_phone_number">PhoneNumberActivity</string>
     <string name="hello_world">Hello world!</string>
 
+    <!-- Phone Validation activity -->
+    <string name="phone_validation_title">Phone Validation</string>
+    <string name="phone_validation_subtitle">We use your phone number to log you in and connect you with friends.</string>
+    <string name="phone_validation_hint">Country Code + Phone </string>
+    <string name="phone_validation_example_phone">ex: +4155099283</string>
+
 </resources>

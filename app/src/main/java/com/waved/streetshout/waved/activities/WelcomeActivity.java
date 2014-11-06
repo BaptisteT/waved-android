@@ -22,7 +22,7 @@ public class WelcomeActivity extends Activity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(WelcomeActivity.this, PhoneNumberActivity.class);
+                Intent intent = new Intent(WelcomeActivity.this, PhoneValidationActivity.class);
                 startActivity(intent);
             }
         });

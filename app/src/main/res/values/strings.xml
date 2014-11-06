@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Waved</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Welcome activity -->
+    <string name="title_activity_welcome">Waved</string>
+    <string name="welcome_tagline">The best way to have real conversations with your friends.</string>
+    <string name="welcome_button">Start Talking</string>
+    <string name="title_activity_phone_number">PhoneNumberActivity</string>
+    <string name="hello_world">Hello world!</string>
+
+</resources>

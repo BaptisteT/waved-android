@@ -1,0 +1,57 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    tools:context="com.waved.streetshout.waved.activities.WelcomeActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView android:text="@string/app_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="50dp"
+            android:textSize="25dp"/>
+
+        <TextView android:text="@string/welcome_tagline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textSize="18dp"
+            android:textColor="@color/blue"/>
+    </LinearLayout>
+
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginRight="0dp"
+        android:layout_marginLeft="0dp"
+        android:paddingRight="0dp"
+        android:paddingLeft="0dp"
+        android:src="@drawable/welcome_waves"/>
+
+    <Button
+        android:id="@+id/welcome_button"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:text="@string/welcome_button"
+        android:background="@drawable/rounded_button"
+        android:textSize="18dp"/>
+
+
+</RelativeLayout>

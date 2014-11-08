@@ -8,8 +8,6 @@
     <string name="title_activity_welcome">Waved</string>
     <string name="welcome_tagline">The best way to have real conversations with your friends.</string>
     <string name="welcome_button">Start Talking</string>
-    <string name="title_activity_phone_number">PhoneNumberActivity</string>
-    <string name="hello_world">Hello world!</string>
 
     <!-- Phone Validation activity -->
     <string name="phone_validation_title">Phone Validation</string>
@@ -19,4 +17,10 @@
     <string name="phone_validation_loading_dialog">Validating phone number...</string>
     <string name="phone_validation_invalid_phone_number">Invalid phone number, don\'t forget the country code!</string>
 
+    <!-- Code Confirmation activity -->
+    <string name="code_confirmation_title">Enter Validation Code</string>
+    <string name="code_confirmation_sms">We have sent you an SMS</string>
+    <string name="code_confirmation_try_again">We will try again in</string>
+    <string name="code_confirmation_second_sms">A second SMS has been sent.</string>
+    <string name="code_confirmation_wrong_code">Invalid code, please try again.</string>
 </resources>

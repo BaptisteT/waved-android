@@ -21,8 +21,9 @@ public class ApiUtils {
 
 
 
-    public static void requestSmsCode(Activity activity, final String phoneNumber, final boolean retry,
-                                      Response.Listener success, Response.ErrorListener failure) {
+    public static void requestSmsCode(Activity activity, final String phoneNumber,
+                     final boolean retry, Response.Listener success, Response.ErrorListener failure)
+    {
         Map<String, Object> params = new HashMap<String, Object>();
 
         String url = getBasePath() + "/sessions.json";
@@ -41,5 +42,15 @@ public class ApiUtils {
                 return params;
             }
         });
+    }
+
+    public static void checkConfirmationCode(Activity activity, String phoneNumber, String code,
+                                          Response.Listener success, Response.ErrorListener failure)
+    {
+        String url = getBasePath() + "/confirm_sms_code.json" + "?phone_number=" + phoneNumber +
+                                                                                     "&code" + code;
+
+        GeneralUtils.getRequestQueue(activity).add(new StringRequest(Request.Method.GET, url,
+                                                                                 success, failure));
     }
 }

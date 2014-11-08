@@ -2,6 +2,7 @@ package com.waved.streetshout.waved.activities;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -60,17 +61,16 @@ public class PhoneValidationActivity extends Activity {
                         {
                             @Override
                             public void onResponse(String response) {
-                                // response
                                 dialog.cancel();
-                                Toast.makeText(PhoneValidationActivity.this, "Success!",
-                                                                         Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(PhoneValidationActivity.this, CodeConfirmationActivity.class);
+                                intent.putExtra("phone_number", phoneNumberEditText.getText().toString());
+                                startActivity(intent);
                             }
                         },
                         new Response.ErrorListener()
                         {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                // error
                                 dialog.cancel();
                                 Toast.makeText(PhoneValidationActivity.this,
                                         getString(R.string.phone_validation_invalid_phone_number),

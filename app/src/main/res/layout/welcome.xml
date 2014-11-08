@@ -50,7 +50,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
         android:text="@string/welcome_button"
-        android:background="@drawable/rounded_button"
+        android:background="@drawable/rounded_blue_shape"
         android:textSize="18dp"/>
 
 

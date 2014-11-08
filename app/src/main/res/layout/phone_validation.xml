@@ -32,6 +32,7 @@
         android:background="@color/darkBlue">
 
         <EditText
+            android:id="@+id/phone_validation_edit_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -44,6 +45,7 @@
             android:background="#00000000"/>
 
         <Button
+            android:id="@+id/phone_validation_validate_button"
             android:layout_width="70dp"
             android:layout_height="match_parent"
             android:background="@color/blue"/>

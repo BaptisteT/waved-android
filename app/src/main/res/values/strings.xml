@@ -15,6 +15,8 @@
     <string name="phone_validation_title">Phone Validation</string>
     <string name="phone_validation_subtitle">We use your phone number to log you in and connect you with friends.</string>
     <string name="phone_validation_hint">Country Code + Phone </string>
-    <string name="phone_validation_example_phone">ex: +4155099283</string>
+    <string name="phone_validation_example_phone">ex: +14155099283</string>
+    <string name="phone_validation_loading_dialog">Validating phone number...</string>
+    <string name="phone_validation_invalid_phone_number">Invalid phone number, don\'t forget the country code!</string>
 
 </resources>

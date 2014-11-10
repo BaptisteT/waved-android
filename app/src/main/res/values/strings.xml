@@ -24,4 +24,12 @@
     <string name="code_confirmation_try_again">We will try again in</string>
     <string name="code_confirmation_second_sms">A second SMS has been sent.</string>
     <string name="code_confirmation_wrong_code">Invalid code, please try again.</string>
+
+    <!-- Profile Picture activity -->
+    <string name="title_activity_profile_picture">ProfilePictureActivity</string>
+    <string name="profile_picture_add_picture">Add profile picture</string>
+    <string name="profile_picture_camera_option">Take Photo</string>
+    <string name="profile_picture_library_option">Choose from Library</string>
+    <string name="profile_picture_library_select_from">Select from</string>
+
 </resources>

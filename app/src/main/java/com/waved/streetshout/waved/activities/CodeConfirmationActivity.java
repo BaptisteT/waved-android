@@ -169,7 +169,10 @@ public class CodeConfirmationActivity extends Activity {
                     public void onResponse(String response) {
                         dialog.cancel();
                         //Todo BB: profile picture activity
-                        Log.d("BAB", "SUCCES!");
+                        Intent intent = new Intent(CodeConfirmationActivity.this,
+                                                                      ProfilePictureActivity.class);
+                        intent.putExtra("phone_number", phoneNumber);
+                        startActivity(intent);
                     }
                 },
                 new Response.ErrorListener()

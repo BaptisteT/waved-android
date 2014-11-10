@@ -16,11 +16,7 @@
             android:label="@string/title_activity_welcome"
             android:theme="@style/WavedStyle.NoBar" >
 >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="com.waved.streetshout.waved.activities.PhoneValidationActivity"
@@ -31,6 +27,16 @@
             android:name="com.waved.streetshout.waved.activities.CodeConfirmationActivity"
             android:theme="@style/WavedStyle.NoBar"
             android:windowSoftInputMode="stateVisible" >
+        </activity>
+        <activity
+            android:name="com.waved.streetshout.waved.activities.ProfilePictureActivity"
+            android:label="@string/title_activity_profile_picture"
+            android:theme="@style/WavedStyle.NoBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

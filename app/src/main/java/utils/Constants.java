@@ -14,4 +14,9 @@ public class Constants {
 
     public static final long MINUTE = 60000;
     public static final long SECOND = 1000;
+
+    public static final int PROFILE_PICTURE_RES = 200;
+
+    public static final int PROFILE_PIC_CAMERA_REQ = 18237;
+    public static final int PROFILE_PIC_FILE_REQ = 92381;
 }

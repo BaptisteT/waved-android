@@ -1,14 +1,19 @@
 package com.waved.streetshout.waved.activities;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -93,8 +98,10 @@ public class CodeConfirmationActivity extends Activity {
                 for (int i = 0; i < Constants.CONFIRMATION_CODE_DIGITS; i++) {
                     if (i < length) {
                         digits.get(i).setText("" + s.toString().substring(i,i+1));
+                        digits.get(i).setBackground(getResources().getDrawable(R.drawable.round_dark_blue_shape));
                     } else {
                         digits.get(i).setText("");
+                        digits.get(i).setBackground(getResources().getDrawable(R.drawable.round_blue_shape));
                     }
                 }
 
@@ -104,6 +111,50 @@ public class CodeConfirmationActivity extends Activity {
                 }
             }
         });
+
+        startCoundown();
+    }
+
+    private void startCoundown()
+    {
+        new CountDownTimer(Constants.SMS_COUNTDOWN, Constants.SECOND) {
+
+            public void onTick(long millisUntilFinished) {
+                long minutes = millisUntilFinished/Constants.MINUTE;
+                long seconds =  (millisUntilFinished - minutes * Constants.MINUTE)/Constants.SECOND;
+                if (seconds < 10) {
+                    timeRemainingTextView.setText("" + minutes + ":0" + seconds);
+                } else {
+                    timeRemainingTextView.setText("" + minutes + ":" + seconds);
+                }
+            }
+
+            public void onFinish() {
+                statusTextView.setText(R.string.code_confirmation_second_sms);
+                timeRemainingTextView.setVisibility(View.GONE);
+
+                sendSMS();
+            }
+        }.start();
+    }
+
+    private void sendSMS() {
+        ApiUtils.requestSmsCode(CodeConfirmationActivity.this, phoneNumber, true,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                    //do nothing
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //do nothing
+                    }
+                }
+        );
     }
 
     private void validateCode()
@@ -129,17 +180,19 @@ public class CodeConfirmationActivity extends Activity {
 
                         for (int i = 0; i < Constants.CONFIRMATION_CODE_DIGITS; i++) {
                             digits.get(i).setText("");
+                            digits.get(i).setBackground(getResources().getDrawable(R.drawable.round_blue_shape));
                         }
 
                         codeEditText.setText("");
 
-                        Toast.makeText(CodeConfirmationActivity.this,
-                                getString(R.string.code_confirmation_wrong_code),
-                                                                        Toast.LENGTH_SHORT).show();
+                        new AlertDialog.Builder(CodeConfirmationActivity.this)
+                                .setMessage(getString(R.string.code_confirmation_wrong_code))
+                                .setPositiveButton(android.R.string.ok,
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {}
+                                        }).show();
                     }
                 }
         );
-
-        Log.d("BAB", "Code " + codeEditText.getText());
     }
 }

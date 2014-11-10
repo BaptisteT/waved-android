@@ -10,4 +10,8 @@ public class Constants {
     public static final String PROD_BASE_URL = "http://heard.herokuapp.com";
     public static final String DEV_BASE_URL = "http://heard-staging.herokuapp.com";
     public static final int CONFIRMATION_CODE_DIGITS = 4;
+    public static final long SMS_COUNTDOWN = 120000;
+
+    public static final long MINUTE = 60000;
+    public static final long SECOND = 1000;
 }

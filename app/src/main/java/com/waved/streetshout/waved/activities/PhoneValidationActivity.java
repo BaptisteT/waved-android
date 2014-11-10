@@ -1,7 +1,9 @@
 package com.waved.streetshout.waved.activities;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,15 +42,20 @@ public class PhoneValidationActivity extends Activity {
                 Phonenumber.PhoneNumber phoneNumber = null;
 
                 try {
+                    //Todo Bastien: Add country code controller because this is not perfect. If user
+                    //enters non-US phone number without country code, will be interpreted as US.
                     phoneNumber = phoneUtil.parse(phoneNumberEditText.getText().toString(), "US");
                 } catch (NumberParseException e) {
                     System.err.println("NumberParseException was thrown: " + e.toString());
                 }
 
                 if (phoneNumber == null || !phoneUtil.isValidNumber(phoneNumber)) {
-                    Toast.makeText(PhoneValidationActivity.this,
-                                        getString(R.string.phone_validation_invalid_phone_number),
-                                                                         Toast.LENGTH_SHORT).show();
+                    new AlertDialog.Builder(PhoneValidationActivity.this)
+                            .setMessage(getString(R.string.phone_validation_invalid_phone_number))
+                            .setPositiveButton(android.R.string.ok,
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {}
+                                    }).show();
                     return;
                 }
 
@@ -56,25 +63,31 @@ public class PhoneValidationActivity extends Activity {
                 dialog = ProgressDialog.show(PhoneValidationActivity.this, "",
                                         getString(R.string.phone_validation_loading_dialog), false);
 
+                //Store formatted phone number in EditText
+                phoneNumberEditText.setText(phoneUtil.format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.E164));
+
                 ApiUtils.requestSmsCode(PhoneValidationActivity.this,
-                    phoneNumberEditText.getText().toString(), false, new Response.Listener<String>()
-                        {
+                        phoneNumberEditText.getText().toString(), false, new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
                                 dialog.cancel();
-                                Intent intent = new Intent(PhoneValidationActivity.this, CodeConfirmationActivity.class);
-                                intent.putExtra("phone_number", phoneNumberEditText.getText().toString());
+                                Intent intent = new Intent(PhoneValidationActivity.this,
+                                        CodeConfirmationActivity.class);
+                                intent.putExtra("phone_number",
+                                        phoneNumberEditText.getText().toString());
                                 startActivity(intent);
                             }
                         },
-                        new Response.ErrorListener()
-                        {
+                        new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 dialog.cancel();
-                                Toast.makeText(PhoneValidationActivity.this,
-                                        getString(R.string.phone_validation_invalid_phone_number),
-                                                                         Toast.LENGTH_SHORT).show();
+                                new AlertDialog.Builder(PhoneValidationActivity.this)
+                                        .setMessage(getString(R.string.phone_validation_problem))
+                                        .setPositiveButton(android.R.string.ok,
+                                                             new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {}
+                                        }).show();
                             }
                         }
                 );

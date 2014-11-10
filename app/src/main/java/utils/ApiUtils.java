@@ -1,7 +1,9 @@
 package utils;
 
 import android.app.Activity;
+import android.net.Uri;
 
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,11 +17,9 @@ import com.android.volley.toolbox.StringRequest;
 public class ApiUtils {
 
     private static String getBasePath() {
-        return Constants.PRODUCTION ?
-                        Constants.PROD_BASE_URL : Constants.DEV_BASE_URL + "/api/v" + Constants.API;
+        return Constants.PRODUCTION ? Constants.PROD_BASE_URL + "/api/v" + Constants.API :
+                                                  Constants.DEV_BASE_URL + "/api/v" + Constants.API;
     }
-
-
 
     public static void requestSmsCode(Activity activity, final String phoneNumber,
                      final boolean retry, Response.Listener success, Response.ErrorListener failure)
@@ -47,8 +47,8 @@ public class ApiUtils {
     public static void checkConfirmationCode(Activity activity, String phoneNumber, String code,
                                           Response.Listener success, Response.ErrorListener failure)
     {
-        String url = getBasePath() + "/confirm_sms_code.json" + "?phone_number=" + phoneNumber +
-                                                                                     "&code" + code;
+        String url = getBasePath() + "/sessions/confirm_sms_code.json" + "?phone_number="
+                                                        + Uri.encode(phoneNumber) + "&code=" + code;
 
         GeneralUtils.getRequestQueue(activity).add(new StringRequest(Request.Method.GET, url,
                                                                                  success, failure));
